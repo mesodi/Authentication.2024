@@ -1,17 +1,17 @@
-CREATE TABLE client (
-    client_id VARCHAR(255) PRIMARY KEY,
-    client_name VARCHAR(255) NOT NULL,
-    client_phone VARCHAR(50),
-    client_email VARCHAR(255) UNIQUE NOT NULL,
-    client_industry VARCHAR(255)
+CREATE TABLE user (
+    user_id VARCHAR(255) PRIMARY KEY,
+    username VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    industry VARCHAR(255)
 );
 
 CREATE TABLE job (
     job_id VARCHAR(255) PRIMARY KEY,
-    job_client_id VARCHAR(255) NOT NULL,
+    job_user_id VARCHAR(255) NOT NULL,
     job_date_created DATE NOT NULL,
     job_status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (job_client_id) REFERENCES Client(client_id)
+    FOREIGN KEY (job_user_id) REFERENCES User(user_id)
 );
 
 CREATE TABLE company (
@@ -32,7 +32,6 @@ CREATE TABLE patent (
     patent_abstract TEXT,
     FOREIGN KEY (patent_company_id) REFERENCES Company(company_id)
 );
-
 CREATE TABLE linkedinUrl (
     linkedin_id VARCHAR(255) PRIMARY KEY,
     linkedin_company_id VARCHAR(255) NOT NULL,
@@ -42,7 +41,6 @@ CREATE TABLE linkedinUrl (
     FOREIGN KEY (linkedin_company_id) REFERENCES Company(company_id),
     FOREIGN KEY (linkedin_patent_id) REFERENCES Patent(patent_id)
 );
-
 CREATE TABLE ampleData (
     ample_id VARCHAR(255) NOT NULL PRIMARY KEY,
     ample_job_id VARCHAR(255) NOT NULL,
@@ -62,32 +60,29 @@ CREATE TABLE ampleData (
     ample_country VARCHAR(255) NOT NULL,
     ample_company_linkedin VARCHAR(255) NOT NULL
 );
+INSERT INTO User (user_id, username, password, email, industry) VALUES
+    ('USR-47987', 'deanna39@carpenter.com', 'password1', 'deanna39@carpenter.com', 'facilitate back-end deliverables'),
+    ('USR-25058', 'howellmary@williams-delacruz.info', 'password2', 'howellmary@williams-delacruz.info', 'facilitate world-class web-readiness'),
+    ('USR-67541', 'wheelergwendolyn@torres.com', 'password3', 'wheelergwendolyn@torres.com', 'repurpose interactive bandwidth'),
+    ('USR-22513', 'mjones@nelson-nolan.com', 'password4', 'mjones@nelson-nolan.com', 'incubate compelling e-tailers'),
+    ('USR-57755', 'emartinez@leon.com', 'password5', 'emartinez@leon.com', 'seize virtual solutions'),
+    ('USR-38765', 'garcia@example.com', 'password6', 'garcia@example.com', 'optimize dynamic platforms'),
+    ('USR-98476', 'hernandez@example.com', 'password7', 'hernandez@example.com', 'streamline global infrastructures'),
+    ('USR-65432', 'martinez@example.com', 'password8', 'martinez@example.com', 'enhance scalable web services'),
+    ('USR-83219', 'perez@example.com', 'password9', 'perez@example.com', 'synergize efficient paradigms'),
+    ('USR-90871', 'johnson@example.com', 'password10', 'johnson@example.com', 'leverage robust metrics');
 
-
-INSERT INTO Client (client_id, client_name, client_phone, client_email, client_industry) VALUES
-        ('CUST-47987', 'Smith-Cooper', '(847)060-8039x15812', 'deanna39@carpenter.com', 'facilitate back-end deliverables'),
-        ('CUST-25058', 'Avila-Weeks', '194-641-1003x75208', 'howellmary@williams-delacruz.info', 'facilitate world-class web-readiness'),
-        ('CUST-67541', 'Rice-Guerra', '(828)794-4622', 'wheelergwendolyn@torres.com', 'repurpose interactive bandwidth'),
-        ('CUST-22513', 'Frey Ltd', '(721)189-6507', 'mjones@nelson-nolan.com', 'incubate compelling e-tailers'),
-        ('CUST-57755', 'Mann Ltd', '6423465243', 'emartinez@leon.com', 'seize virtual solutions'),
-        ('CUST-38765', 'Garcia PLC', '1-212-555-1234', 'garcia@example.com', 'optimize dynamic platforms'),
-        ('CUST-98476', 'Hernandez Inc', '1-323-555-5678', 'hernandez@example.com', 'streamline global infrastructures'),
-        ('CUST-65432', 'Martinez LLC', '1-415-555-8901', 'martinez@example.com', 'enhance scalable web services'),
-        ('CUST-83219', 'Perez and Sons', '1-619-555-2345', 'perez@example.com', 'synergize efficient paradigms'),
-        ('CUST-90871', 'Johnson Associates', '1-714-555-6789', 'johnson@example.com', 'leverage robust metrics');
-
-INSERT INTO Job (job_id, job_client_id, job_date_created, job_status) VALUES
-        ('QRY-20240309-273898', 'CUST-47987', '2023-03-09', 'COMPLETE'),
-        ('QRY-20240309-905777', 'CUST-25058', '2023-03-08', 'Processing..'),
-        ('QRY-20240309-438943', 'CUST-67541', '2023-03-07', 'COMPLETE'),
-        ('QRY-20240309-204127', 'CUST-22513', '2023-03-06', 'COMPLETE'),
-        ('QRY-20240309-331501', 'CUST-57755', '2023-03-05', 'COMPLETE'),
-        ('QRY-20240310-987654', 'CUST-38765', '2023-03-10', 'Processing..'),
-        ('QRY-20240311-123456', 'CUST-98476', '2023-03-11', 'COMPLETE'),
-        ('QRY-20240312-654321', 'CUST-65432', '2023-03-12', 'Processing..'),
-        ('QRY-20240313-456789', 'CUST-83219', '2023-03-13', 'COMPLETE'),
-        ('QRY-20240314-987123', 'CUST-90871', '2023-03-14', 'COMPLETE');
-
+INSERT INTO Job (job_id, job_user_id, job_date_created, job_status) VALUES
+    ('QRY-20240309-273898', 'USR-47987', '2023-03-09', 'COMPLETE'),
+    ('QRY-20240309-905777', 'USR-25058', '2023-03-08', 'Processing..'),
+    ('QRY-20240309-438943', 'USR-67541', '2023-03-07', 'COMPLETE'),
+    ('QRY-20240309-204127', 'USR-22513', '2023-03-06', 'COMPLETE'),
+    ('QRY-20240309-331501', 'USR-57755', '2023-03-05', 'COMPLETE'),
+    ('QRY-20240310-987654', 'USR-38765', '2023-03-10', 'Processing..'),
+    ('QRY-20240311-123456', 'USR-98476', '2023-03-11', 'COMPLETE'),
+    ('QRY-20240312-654321', 'USR-65432', '2023-03-12', 'Processing..'),
+    ('QRY-20240313-456789', 'USR-83219', '2023-03-13', 'COMPLETE'),
+    ('QRY-20240314-987123', 'USR-90871', '2023-03-14', 'COMPLETE');
 INSERT INTO Company (company_id, company_job_id, company_applicant, company_appearances) VALUES
         ('CO-95071', 'QRY-20240309-273898', 'Ruiz-May', 20),
         ('CO-26520', 'QRY-20240309-905777', 'Munoz, Gates and Smith', 26),

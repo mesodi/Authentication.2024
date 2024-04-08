@@ -1,10 +1,10 @@
 package User.Interface.Implementation.Authentication.repository;
 
-import User.Interface.Implementation.Authentication.model.Client;
+import User.Interface.Implementation.Authentication.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, String> {
+public interface UserRepository extends JpaRepository<User, String> {
 }
